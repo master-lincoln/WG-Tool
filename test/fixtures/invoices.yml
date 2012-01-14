@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  comment: MyText
+  price: 9.99
+  date: 2012-01-14
+  creator_id: 1
+
+two:
+  comment: MyText
+  price: 9.99
+  date: 2012-01-14
+  creator_id: 1

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Created by:</b>
+  <%= link_to @invoice.creator.name, user_path(@invoice.creator) %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @invoice.comment %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @invoice.price %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @invoice.date %>
+</p>
+
+<p>
+  <b>Invoice shared with:</b>
+	<ul>
+	<% @invoice.duties.each do |duty| %>
+		<li><%= duty.user.name %></li>
+	<% end %>
+	</ul>
+</p>
+
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>

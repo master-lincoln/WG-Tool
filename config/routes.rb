@@ -1,4 +1,8 @@
 WGTool::Application.routes.draw do
+  resources :users
+
+  resources :invoices
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
