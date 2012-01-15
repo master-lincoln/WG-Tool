@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WGTool</title>
+  <title>WG-Tool</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -10,10 +10,10 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="container">
-        <h3><%= link_to "WGTool", "/" %></h3>
+        <h3><a href="/">WG-Tool<small>alpha</small></a></h3>
         <ul class="nav">
-          <li><%= link_to "Link1", "/path1"  %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
+          <li><%= link_to "Users", users_path  %></li>
+          <li><%= link_to "invoices", invoices_path  %></li>
           <li><%= link_to "Link3", "/path3"  %></li>
         </ul>
         <ul class="nav" id="nav-right">
@@ -25,18 +25,8 @@
   <div class="container">
     <div class="content">
       <div class="row">
-        <div class="span11">
+        <div class="span16">
           <%= yield %>
-        </div>
-        <div class="span1">&nbsp;</div>
-        <div class="span4">
-          <h3>Sidebar</h3>
-          <ul>
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-           	<li class="<%= controller.controller_path == 'users' ? 'active' : '' %>"><a href="<%= users_path %>">Users</a></li>
-           </ul>
         </div>
       </div>
     </div>
