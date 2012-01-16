@@ -1,13 +1,14 @@
 WGTool::Application.routes.draw do
-  resources :users
-
+	
+	resources :users
   resources :invoices
+  match '/:action' => 'application##{:action}'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-     match '/:action' => 'application##{:action}'
+  #   match '/:action' => 'application##{:action}'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

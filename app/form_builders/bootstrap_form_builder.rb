@@ -12,13 +12,11 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
       else
         options = args[options_index - 1]
       end
-      label = label(field, options[:label], :class => options[:label_class])
       @template.content_tag(:div, :class => 'clearfix') do
-        @template.concat(label)
         @template.concat(@template.content_tag(:div, :class => 'input') { @template.concat(super(field, *args)) })
       end
     end
   end
 end
 
-ActionView::Base.default_form_builder = BootstrapFormBuilder
+#ActionView::Base.default_form_builder = BootstrapFormBuilder

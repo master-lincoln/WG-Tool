@@ -1,34 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Created by:</b>
-  <%= link_to @invoice.creator.name, user_path(@invoice.creator) %>
-</p>
+<div class="row">
 
-<p>
-  <b>Comment:</b>
-  <%= @invoice.comment %>
-</p>
+<div style="display:table;" class="span5">
+	<div class="span1 center-cell">
+		<%= link_to @invoice.creator.name, user_path(@invoice.creator), :class => "btn success" %>
+	</div>
+	<div class="span1 center-cell">
+		<div style="height:50%; border-bottom: 5px solid #EEEEEE; margin: 0 5px;">
+		</div>
+	</div>
+	<div class="span1 center-cell">
+		<span class="label important"><%= @invoice.price %>&euro;</span> 
+	</div>
+	<div class="span1 center-cell">
+		<div style="height:50%; border-bottom: 5px solid #EEEEEE; margin-left: 5px;">
+		</div>
+	</div>
+	<div class="span2 center-cell">
+	  <blockquote id="duty-users">
+		<% @invoice.duties.each do |duty| %>
+			<%= link_to duty.user.name, user_path(duty.user), :class => "btn" %><br/>
+		<% end %>
+		 </blockquote>
+	</div>
+</div>
 
-<p>
-  <b>Price:</b>
-  <%= @invoice.price %>
-</p>
+<div class="span5">
+  <p><small><%= l @invoice.date, :format => :long %></small></p>
+  <blockquote>
+ 	 <p class="span7"><%= @invoice.comment %></p>
+  </blockquote>
+</div>
 
-<p>
-  <b>Date:</b>
-  <%= @invoice.date %>
-</p>
+</div>
 
-<p>
-  <b>Invoice shared with:</b>
-	<ul>
-	<% @invoice.duties.each do |duty| %>
-		<li><%= duty.user.name %></li>
-	<% end %>
-	</ul>
-</p>
+<%= link_to 'Edit', edit_invoice_path(@invoice) %>
 
-
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
