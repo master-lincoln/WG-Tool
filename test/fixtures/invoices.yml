@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  comment: MyText
+  comment: Klopapier deluxe
   price: 9.99
   date: 2012-01-14
-  creator_id: 1
+  creator: phil
 
 two:
-  comment: MyText
-  price: 9.99
-  date: 2012-01-14
-  creator_id: 1
+  comment: Test
+  price: 10
+  date: 2012-01-16
+  creator: jens

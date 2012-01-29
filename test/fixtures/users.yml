@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+phil:
+  name: Philipp
+  email: phil@test.de
+  pass_digest: MyString
+
+jens:
+  name: Jens
   email: MyString
   pass_digest: MyString
 
-two:
-  name: MyString
+sven:
+  name: Sven
   email: MyString
   pass_digest: MyString

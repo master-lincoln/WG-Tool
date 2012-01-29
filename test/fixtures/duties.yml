@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  invoice_id: 1
-  user_id: 1
+d1:
+  invoice: one
+  user: jens
 
-two:
-  invoice_id: 1
-  user_id: 1
+d2:
+  invoice: one
+  user: sven
+
+d3:
+  invoice: one
+  user: phil
+
+d4:
+  invoice: two
+  user: phil
