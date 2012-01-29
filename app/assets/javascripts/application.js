@@ -7,4 +7,56 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require highcharts.js
 //= require_tree .
+
+
+
+// draw standings chart
+$(function(){
+	var chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'chart',
+			defaultSeriesType: 'column'
+		},
+		title: {
+			text: 'Schuldenverteilung'
+		},
+		xAxis: {
+			categories: ['Schulden',]
+		},
+		yAxis: {
+			 title: {
+				text: 'Guthaben in €'
+			 }
+		},
+		tooltip: {
+			formatter: function() {
+				return ''+
+					 this.series.name +': '+ this.y +'€';
+			}
+		},
+		plotOptions: {
+			column: {
+				dataLabels: {
+				   enabled: true,
+					color: '#334477',
+				   style: {
+					  fontWeight: 'bold'
+				   },
+				   formatter: function() {
+					  return this.y +' €';
+				   }
+				}
+			}
+		},    
+		credits: {
+			enabled: false
+		},
+		series: standings,
+		exporting : {
+			enabled: false
+		}
+	});
+});
+

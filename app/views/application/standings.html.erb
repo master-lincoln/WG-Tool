@@ -3,7 +3,20 @@
 	<p>
 		<%= user.name %>
 		<span class="label <%= label_class %>">
-			<%= euro user.standings %>
+			<%= euro user.standing %>
 		</span>
 	</p>
 <% end %>
+
+<div id="chart" style="width: 500px; height: 200px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+var standings = [
+<% @users.each do |user| %>
+	{
+		name : '<%= user.name %>',
+		data: [<%= user.standing %>]
+	}<%= ',' unless user==@users.last %>
+<% end %>
+];
+</script>

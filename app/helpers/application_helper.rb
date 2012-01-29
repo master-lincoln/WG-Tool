@@ -5,6 +5,6 @@ module ApplicationHelper
   end
   
   def euro(price)
-  	raw ( "%05.2f &euro;" % price )
+  	raw ( "%.2f &euro;" % price )
   end
 end
