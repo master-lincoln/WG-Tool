@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def about
   end
   
+  def standings
+  	@users = User.all
+  end
+  
 end

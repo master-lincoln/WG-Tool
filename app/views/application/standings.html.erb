@@ -1,0 +1,9 @@
+<% @users.each do |user| %>
+	<% label_class = user.standing > 0 ? 'success' : 'important' %>
+	<p>
+		<%= user.name %>
+		<span class="label <%= label_class %>">
+			<%= euro user.standings %>
+		</span>
+	</p>
+<% end %>
