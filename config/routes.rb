@@ -1,5 +1,7 @@
 WGTool::Application.routes.draw do
 	
+  resources :articles
+
 	resources :users
   resources :invoices
   match '/:action' => 'application##{:action}'
