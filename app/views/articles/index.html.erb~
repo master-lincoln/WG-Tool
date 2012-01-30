@@ -32,7 +32,7 @@
 		  </tr>
   	</thead>
   	<tbody>
-		  <% @articles.each do |article| -%>
+		  <% @myArticles.each do |article| -%>
 	  	<tr>
       
 				<td><%= article.name %></td>

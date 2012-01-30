@@ -1,6 +1,6 @@
 
-  <label class="label"><%= t("activerecord.attributes.article.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</label>
-  <p><%= @article.user_id %></p>
+  <label class="label"><%= t("activerecord.attributes.article.user_id", :default => t("activerecord.labels.user.name", :default => "User")) %>:</label>
+  <p><%= @article.user.name %></p>
 
   <label class="label"><%= t("activerecord.attributes.article.wg", :default => t("activerecord.labels.wg", :default => "Wg")) %>:</label>
   <p><%= @article.wg %></p>

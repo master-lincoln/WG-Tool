@@ -7,6 +7,6 @@
     <%= f.check_box :wg, :class => 'check_box' %>
 
 <div class="actions">
-  <button class="btn primary" type="submit">Sve</button> or
+  <button class="btn primary" type="submit">Save</button> or
 	<%= link_to "Cancel", articles_path %>
 </div>

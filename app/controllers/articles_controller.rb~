@@ -3,16 +3,13 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
+		@myArticles = Article.where(:user_id => User.find_by_name("Hans").id)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
     end
   end
-
-	def myArticles
-		@article = Article.where("name = ?", params[:orders])
-	end
 
   # GET /articles/1
   # GET /articles/1.json
@@ -45,14 +42,13 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
+		@article.user = User.find_by_name('Hans')
 
     respond_to do |format|
       if @article.save
-        #format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        #format.json { render json: @article, status: :created, location: @article }
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
