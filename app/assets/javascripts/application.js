@@ -10,6 +10,9 @@
 //= require highcharts.js
 //= require_tree .
 
+function roundTwo(value) {
+	return Math.round(100*value)/100
+}
 
 
 // draw standings chart
@@ -33,7 +36,7 @@ $(function(){
 		tooltip: {
 			formatter: function() {
 				return ''+
-					 this.series.name +': '+ this.y +'€';
+					 this.series.name +': '+ roundTwo(this.y)+'€';
 			}
 		},
 		plotOptions: {
@@ -45,7 +48,7 @@ $(function(){
 					  fontWeight: 'bold'
 				   },
 				   formatter: function() {
-					  return this.y +' €';
+					  return roundTwo(this.y) +' €';
 				   }
 				}
 			}
