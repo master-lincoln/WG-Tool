@@ -1,0 +1,49 @@
+<h1>Die Einkaufsliste</h1>
+<%= link_to "New Article", new_article_path, :class => 'btn primary' %>
+<h3 text-decoration:"underlined"> Privat </h3>
+	<table class="zebra-striped">
+		<thead>
+  		<tr>      
+  			<th>Artikel</th>
+		    <th>Actions</th>
+		  </tr>
+  	</thead>
+  	<tbody>
+		  <% @articles.each do |article| -%>
+	  	<tr>
+      
+				<td><%= article.name %></td>
+				<td>
+				  <%= link_to "Show", article_path(article) %>
+				  <%= link_to "Edit", edit_article_path(article) %>
+				  <%= link_to "Destroy", article_path(article), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+				</td>
+	    </tr>
+    <% end -%>
+   </tbody>
+	</table>
+
+<h3 text-decoration:"underlined"> WG </h3>
+	<table class="zebra-striped">
+		<thead>
+  		<tr>      
+  			<th>Artikel</th>
+		    <th>Actions</th>
+		  </tr>
+  	</thead>
+  	<tbody>
+		  <% @articles.each do |article| -%>
+	  	<tr>
+      
+				<td><%= article.name %></td>
+				<td>
+				  <%= link_to "Show", article_path(article) %>
+				  <%= link_to "Edit", edit_article_path(article) %>
+				  <%= link_to "Destroy", article_path(article), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+				</td>
+	    </tr>
+    <% end -%>
+   </tbody>
+	</table>
+
+

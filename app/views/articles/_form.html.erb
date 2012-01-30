@@ -1,0 +1,12 @@
+
+
+    <%= f.label :name, t("activerecord.attributes.article.name", :default => "Name"), :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+
+    <%= f.label :wg, t("activerecord.attributes.article.wg", :default => "Wg"), :class => :label %>
+    <%= f.check_box :wg, :class => 'check_box' %>
+
+<div class="actions">
+  <button class="btn primary" type="submit">Save</button> or
+	<%= link_to "Cancel", articles_path %>
+</div>
