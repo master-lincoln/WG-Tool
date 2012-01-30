@@ -2,8 +2,9 @@ WGTool::Application.routes.draw do
 	
 	resources :users
   resources :invoices
-  match '/:action' => 'application##{:action}'
   match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as => :signout
+  match '/:action' => 'application##{:action}'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

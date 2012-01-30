@@ -17,6 +17,11 @@
           <li><%= link_to "Link3", "/path3"  %></li>
         </ul>
         <ul class="nav" id="nav-right">
+          <% if current_user %>
+            <li><%= link_to "Logut", signout_path %></li>
+          <% else %>
+          <li><%= link_to "Login", "/auth/github" %></li>
+          <% end %>
           <li><%= link_to "About", :controller => "application", :action => "about"  %></li>
         </ul>
       </div>
