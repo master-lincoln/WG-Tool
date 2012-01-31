@@ -41,6 +41,7 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(params[:invoice])
+    @invoice.creator = current_user
 
     respond_to do |format|
       if @invoice.save

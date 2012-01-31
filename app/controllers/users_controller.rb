@@ -10,15 +10,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+    @users = User.all
+    @invoices = Invoice.order(:date).limit(10)
   end
 
   # GET /users/new

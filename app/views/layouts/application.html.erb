@@ -29,6 +29,12 @@
   </div>
   <div class="container">
     <div class="content">
+      <%- flash.each do |key, msg| -%>
+        <div class="span6 alert-message <%= key %>">
+          <a href="#" class="close">x</a>
+          <p><%= msg %></p>
+        </div>
+      <%- end -%>
       <div class="row">
         <div class="span12">
           <%= yield %>

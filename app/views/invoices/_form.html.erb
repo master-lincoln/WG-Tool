@@ -20,10 +20,8 @@
     <%= f.label :date, :class => "label" %><br />
     <%= f.date_select :date %>
 
-    <%= f.label :creator_id, :class => "label" %><br />
-    <%= f.number_field :creator_id %>
   <div class="actions">
     <%= f.submit :class => "btn primary" %>
-    <%= link_to 'Cancel', invoices_path %>
+    <%= link_to 'Cancel', invoices_path, :class => "btn" %>
   </div>
 <% end %>

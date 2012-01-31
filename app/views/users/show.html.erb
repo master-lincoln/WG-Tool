@@ -1,10 +1,28 @@
 
-  <label class="label"><%= t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</label>
-  <p><%= @user.name %></p>
+<h1><%= @user.name[0] %><small><%= @user.name[1..-1] %></small></h1>
 
-  <label class="label"><%= t("activerecord.attributes.user.email", :default => t("activerecord.labels.email", :default => "Email")) %>:</label>
-  <p><%= @user.email %></p>
+<% @users.each do |user| %>
+	<% label_class = user.standing > 0 ? 'success' : 'important' %>
+	<span style="padding: 20px;">
+		<%= user.name %>
+		<span class="label <%= label_class %>">
+			<%= euro user.standing %>
+		</span>
+	</span>
+<% end %>
 
-  <label class="label"><%= t("activerecord.attributes.user.pass_digest", :default => t("activerecord.labels.pass_digest", :default => "Pass digest")) %>:</label>
-  <p><%= @user.pass_digest %></p>
-<%= link_to "Back", users_path  %>
+<div id="chart" style="width: 500px; height: 200px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+var standings = [
+<% @users.each do |user| %>
+	{
+		name : '<%= user.name %>',
+		data: [<%= user.standing %>]
+	}<%= ',' unless user==@users.last %>
+<% end %>
+];
+</script>
+
+<%= render :partial => 'invoices/invoice', :collection => @invoices %>
+
