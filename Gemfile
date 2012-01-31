@@ -11,6 +11,7 @@ gem "omniauth"
 gem "omniauth-github"
 gem 'omniauth-google-oauth2'
 
+gem 'yaml_db'
 
 # Gems used only for assets and not required
 # in production environments by default.
