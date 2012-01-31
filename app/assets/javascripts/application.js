@@ -7,7 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require highcharts.js
+//= require highcharts
+//= require jquery.tokeninput
 //= require_tree .
 
 function roundTwo(value) {

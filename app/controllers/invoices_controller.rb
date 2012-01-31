@@ -40,11 +40,21 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
+    user_ids = params[:invoice][:userids].split(',')
+    params[:invoice].delete :userids
     @invoice = Invoice.new(params[:invoice])
+
+    if user_ids.empty?
+      render action: "new", notice: 'No users given'
+      return
+    end
     @invoice.creator = current_user
 
     respond_to do |format|
       if @invoice.save
+        user_ids.each do |user_id|
+          Duty.create!(:invoice => @invoice, :user => User.find(user_id))
+        end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render json: @invoice, status: :created, location: @invoice }
       else

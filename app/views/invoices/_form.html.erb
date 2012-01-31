@@ -20,6 +20,13 @@
     <%= f.label :date, :class => "label" %><br />
     <%= f.date_select :date %>
 
+    <%= f.label :userids, :class => "label" %><br />
+    <div class="clearfix">
+      <div class="input">
+        <%= text_field_tag('invoice[userids]') %>
+      </div>
+    </div>
+
   <div class="actions">
     <%= f.submit :class => "btn primary" %>
     <%= link_to 'Cancel', invoices_path, :class => "btn" %>

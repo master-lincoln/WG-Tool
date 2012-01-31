@@ -1,4 +1,15 @@
 class UsersController < ApplicationController
+
+
+  def search
+    @users = User.where('lower(name) LIKE ?', "#{params[:q].downcase}%")
+
+    respond_to do |format|
+      format.html { render json: @users, :only => [:id, :name] }
+      format.json { render json: @users, :only => [:id, :name] }
+    end
+  end
+
   # GET /users
   # GET /users.json
   def index
