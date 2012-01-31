@@ -3,9 +3,9 @@
   <h1><small>Welcome</small><%= current_user.name %></h1>
 <% else %>
   <h3><small>please</small>Login</h3>
-  <%= link_to image_tag('img/github_32.png'), "/auth/github", :title => 'Login with Github', :class => 'loginpic' %>
+  <%= link_to image_tag('github_32.png'), "/auth/github", :title => 'Login with Github', :class => 'loginpic' %>
   <br />
-  <%= link_to image_tag('img/google_32.png'), "/auth/google_oauth2", :title => 'Login with Google', :class => 'loginpic' %>
+  <%= link_to image_tag('google_32.png'), "/auth/google_oauth2", :title => 'Login with Google', :class => 'loginpic' %>
 <% end %>
 
 Work in Progress
