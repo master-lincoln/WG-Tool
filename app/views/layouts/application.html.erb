@@ -12,18 +12,15 @@
       <div class="container">
         <h3><a href="/">WG-Tool<small>alpha</small></a></h3>
         <ul class="nav">
-          <li><%= link_to "Users", users_path  %></li>
-          <li><%= link_to "invoices", invoices_path  %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
+          <% if current_user %>
+            <li><%= link_to "Users", users_path  %></li>
+            <li><%= link_to "invoices", invoices_path  %></li>
+            <li><%= link_to "Link3", "/path3"  %></li>
+          <% end %>
         </ul>
         <ul class="nav" id="nav-right">
           <% if current_user %>
             <li><%= link_to "Logut", signout_path %></li>
-          <% else %>
-          <li>
-            <%= link_to image_tag('github_32.png'), "/auth/github", :title => 'Login with Github', :class => 'loginpic' %>
-            <%= link_to image_tag('google_32.png'), "/auth/google_oauth2", :title => 'Login with Google', :class => 'loginpic' %>
-          </li>
           <% end %>
           <li><%= link_to "About", :controller => "application", :action => "about"  %></li>
         </ul>

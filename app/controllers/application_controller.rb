@@ -2,11 +2,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
   before_filter :require_login
-  skip_before_filter :require_login, :only => [:home, :about, :standings]
+  skip_before_filter :require_login, :only => [:home, :about]
 
   def home
-    flash.keep
-    redirect_to user_path(current_user) if current_user
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      flash.keep
+    end
   end
 
   def about
