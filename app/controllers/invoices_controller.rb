@@ -67,10 +67,20 @@ class InvoicesController < ApplicationController
   # PUT /invoices/1
   # PUT /invoices/1.json
   def update
+    user_ids = params[:invoice][:userids].split(',')
+    params[:invoice].delete :userids
     @invoice = Invoice.find(params[:id])
+
+    if user_ids.empty?
+      render action: "edit", notice: 'No users given'
+      return
+    end
 
     respond_to do |format|
       if @invoice.update_attributes(params[:invoice])
+        user_ids.each do |user_id|
+          Duty.find_or_create_by_invoice_id_and_user_id(@invoice,User.find(user_id))
+        end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
         format.json { head :ok }
       else
