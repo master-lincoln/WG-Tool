@@ -19,5 +19,8 @@ class User < ActiveRecord::Base
       sum + val.price
     end
   end
-	
+
+  def mentioned_invoices
+    (own_invoices.limit(10) + invoices.limit(10))[0..10].sort { |a,b| b.created_at <=> a.created_at }
+  end
 end

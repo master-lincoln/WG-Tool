@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @users = User.all
-    @invoices = Invoice.order('created_at DESC').limit(10)
+    @invoices = @user.mentioned_invoices
   end
 
   # GET /users/new
