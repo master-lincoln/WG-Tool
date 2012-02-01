@@ -1,6 +1,13 @@
-Requirements and installation
+WG-Tool
+=======
 
-Ruby
+The current version should always be uploaded at [wg-tool.herokuapp.com](http://wg-tool.herokuapp.com/) 
+
+
+Requirements and installation
+-----------------------------
+
+### Ruby
 This uses ruby v1.9.x
 
 If you don't have ruby I'd recommend rvm.
@@ -19,10 +26,11 @@ After that install ruby and use it afterwards
 And bundler
 ``gem install bundle``
 
-Clone repo and prepare to run
+### Clone repo and prepare to run
 
 Clone the repository:
 ``git clone git@github.com:master-lincoln/WG-Tool.git``
+
 Install dependencies 
 ``cd WG-Tool && bundle install``
 

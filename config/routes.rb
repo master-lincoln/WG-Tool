@@ -1,6 +1,7 @@
 WGTool::Application.routes.draw do
 
 	match '/users/search' => 'users#search'
+  resources :articles
 	resources :users
   resources :invoices
   match "/auth/:provider/callback" => "sessions#create"

@@ -23,7 +23,7 @@
             <li><%= link_to "Logut", signout_path %></li>
           <% end %>
           <li><%= link_to "About", :controller => "application", :action => "about"  %></li>
-        </ul>
+         <li class="<%= controller.controller_path == 'articles' ? 'active' : '' %>"><a href="<%= articles_path %>">Articles</a></li></ul>
       </div>
     </div>
   </div>
