@@ -1,7 +1,8 @@
 <div class="invoice">
-
-<%= link_to 'x', invoice, confirm: 'Wirklich löschen?', method: :delete, :title => 'Eintrag löschen', :class => 'close' %>
-<%= link_to 'Bearbeiten', edit_invoice_path(invoice), :class => 'edit' %>
+<% if current_user && current_user == invoice.creator %>
+  <%= link_to 'x', invoice, confirm: 'Wirklich löschen?', method: :delete, :title => 'Eintrag löschen', :class => 'close' %>
+  <%= link_to 'Bearbeiten', edit_invoice_path(invoice), :class => 'edit' %>
+<% end %>
 
 <div style="display:table;" class="span5">
 	<div class="span1 center-cell">
