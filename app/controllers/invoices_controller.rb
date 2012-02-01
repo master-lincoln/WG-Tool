@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.reverse
 
     respond_to do |format|
       format.html # index.html.erb
