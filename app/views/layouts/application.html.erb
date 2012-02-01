@@ -13,17 +13,16 @@
         <h3><a href="/">WG-Tool<small>alpha</small></a></h3>
         <ul class="nav">
           <% if current_user %>
-            <li><%= link_to "Users", users_path  %></li>
-            <li><%= link_to "invoices", invoices_path  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li><%= link_to "User", users_path  %></li>
+            <li><%= link_to "Rechnungen", invoices_path  %></li>
+            <li><%= link_to "Einkaufsliste", articles_path %></li>
           <% end %>
         </ul>
         <ul class="nav" id="nav-right">
           <% if current_user %>
-            <li><%= link_to "Logut", signout_path %></li>
+            <li><%= link_to "Logout", signout_path %></li>
           <% end %>
           <li><%= link_to "About", :controller => "application", :action => "about"  %></li>
-         <li class="<%= controller.controller_path == 'articles' ? 'active' : '' %>"><a href="<%= articles_path %>">Articles</a></li></ul>
       </div>
     </div>
   </div>

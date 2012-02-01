@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
-		@myArticles = Article.where(:user_id => User.find_by_name("Hans").id)
+		@myArticles = Article.where(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
-		@article.user = User.find_by_name('Hans')
+		@article.user = current_user
 
     respond_to do |format|
       if @article.save
