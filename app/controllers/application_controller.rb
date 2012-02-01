@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
-  #before_filter :fake_login
   before_filter :require_login
   skip_before_filter :require_login, :only => [:home, :about]
 
@@ -19,6 +18,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
+    fake_login if Rails.env.development?
     unless current_user
       flash[:error] = "You must be logged in to access this section"
       redirect_to root_url
