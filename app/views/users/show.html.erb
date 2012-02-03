@@ -1,6 +1,9 @@
 
-<h1><%= @user.name[0] %><small><%= @user.name[1..-1] %></small></h1>
-
+<h1>
+	<%= @user.name[0] %><small><%= @user.name[1..-1] %></small>
+	<%= link_to 'Neue Rechnung', new_invoice_path, :class => 'btn primary', :style => 'float: right' %>
+</h1>
+<p></p>
 <% @users.each do |user| %>
 	<% label_class = user.standing > 0 ? 'success' : 'important' %>
 	<span style="padding: 20px;">
