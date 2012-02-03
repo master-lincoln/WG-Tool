@@ -13,7 +13,6 @@
         <h3><a href="/">WG-Tool<small>alpha</small></a></h3>
         <ul class="nav">
           <% if current_user %>
-            <li><%= link_to "User", users_path  %></li>
             <li><%= link_to "Rechnungen", invoices_path  %></li>
             <li><%= link_to "Einkaufsliste", articles_path %></li>
           <% end %>
