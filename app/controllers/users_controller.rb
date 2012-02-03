@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
   def search
     @users = User.where('lower(name) LIKE ?', "#{params[:q].downcase}%")
 
