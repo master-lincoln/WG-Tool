@@ -2,8 +2,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
-		@myArticles = Article.where(:user_id => current_user.id)
+    @articles = Article.where(:wg => true)
+		@myArticles = Article.where(:user_id => current_user.id,:wg => false)
 
     respond_to do |format|
       format.html # index.html.erb
