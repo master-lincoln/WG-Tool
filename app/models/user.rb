@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   end
 
   def mentioned_invoices
-    own = own_invoices.limit(10)
-    other = invoices.limit(10)
+    own = own_invoices.order('date DESC').limit(10)
+    other = invoices.order('date DESC').limit(10)
     ((own-other) + other)[0..10].sort { |a,b| b.created_at <=> a.created_at }
   end
 end
