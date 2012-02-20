@@ -2,10 +2,12 @@
  <thead>
   <tr>
     <th>ID</th>
-        <th>
+    <th>
       <%= t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name")) %>
     </th>
-        <th>Created at</th>
+    <th></th>
+    <th>Email</th>
+    <th>Created at</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -13,9 +15,10 @@
   <% @users.each do |user| -%>
    <tr>
     <td><%= user.id %></td>
-        <td><%= link_to user.name, user_path(user) %>
-    </td>
-        <td><%= user.created_at %></td>
+    <td><%= link_to user.name, user_path(user) %></td>
+    <td><%= user.wants_mail ? 'x' : '' %></td>
+    <td><%= user.email %></td>
+    <td><%= user.created_at %></td>
     <td>
       <%= link_to "Show", user_path(user) %>
       <%= link_to "Edit", edit_user_path(user) %>

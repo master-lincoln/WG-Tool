@@ -5,6 +5,7 @@ WGTool::Application.routes.draw do
 	resources :users
   resources :invoices
   match "/auth/:provider/callback" => "sessions#create"
+  post "/users/:id/mail" => "users#mail_info"
   match "/signout" => "sessions#destroy", :as => :signout
   match '/:action' => 'application##{:action}'
 

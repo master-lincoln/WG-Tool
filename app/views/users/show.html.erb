@@ -3,7 +3,23 @@
 	<%= @user.name[0] %><small><%= @user.name[1..-1] %></small>
 	<%= link_to 'Neue Rechnung', new_invoice_path, :class => 'btn primary', :style => 'float: right' %>
 </h1>
-<p></p>
+
+<p>
+	<%= form_tag(:controller => "users", :action => "mail_info", :method => "post") do %>
+		<div class="well">
+			<label class="checkbox" style="width:210px; padding-right: 10px;">
+				<%= check_box_tag 'wants_mail', 'Receive Mail?', @user.wants_mail %>
+				Bei neuen Rechnungen Mail an:
+			</label>
+			<div class="input-prepend">
+				<span class="add-on">@</span>
+				<input class="span4" type="text" size="16" name="email" value="<%= @user.email %>">
+				<button class="btn primary" type="submit" style="float:right; ;padding: 4px;">Speichern</button>
+			</div>
+		</div>
+	<% end %>
+</p>
+
 <% @users.each do |user| %>
 	<% label_class = user.standing > 0 ? 'success' : 'important' %>
 	<span style="padding: 20px;">

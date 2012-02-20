@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"].split(" ").first
+      user.wants_mail = false;
     end
   end
 
@@ -25,4 +26,5 @@ class User < ActiveRecord::Base
     other = invoices.order('date DESC').limit(10)
     ( ((own-other) + other).sort { |a,b| b.created_at <=> a.created_at } )[0..10]
   end
+
 end

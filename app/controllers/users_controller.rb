@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def mail_info
+    @user = User.find(params[:id])
+    @user.email = params[:email]
+    @user.wants_mail = params[:wants_mail] ? true : false;
+    @user.save
+    redirect_to @user, :notice => 'E-Mail Daten gespeichert.'
+  end
+
   # GET /users
   # GET /users.json
   def index

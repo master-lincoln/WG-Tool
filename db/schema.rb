@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130193816) do
+ActiveRecord::Schema.define(:version => 20120219221655) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120130193816) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "wants_mail"
   end
 
 end

@@ -52,9 +52,16 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
+        # create duties
         user_ids.each do |user_id|
-          Duty.create!(:invoice => @invoice, :user => User.find(user_id))
+          user = User.find(user_id)
+          Duty.create!(:invoice => @invoice, :user => user)
+          # send out mails
+          if user.wants_mail && user.email != ''
+            UserMailer.invoice_created(user, @invoice).deliver
+          end
         end
+
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render json: @invoice, status: :created, location: @invoice }
       else

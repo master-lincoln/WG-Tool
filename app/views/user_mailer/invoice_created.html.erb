@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Moin <%= @user.name %></h1>
+    <p>
+      <%= @invoice.creator.name %> hat eine Rechnung erstellt, die dich betrifft:
+    </p>
+    <p>
+      <b>Gesamtpreis:</b> <%= @invoice.price %> <br>
+      <b>Schuldner:</b> <%= @invoice.users.map { |user| user.name }.join(',') %> <br>
+      <b>Kommentar:</b> <br>
+      <%= @invoice.comment %>
+    </p>
+    <p><%= link_to 'Online anschauen', user_url(@user, :host => 'wg-tool.herokuapp.com') %></p>
+  </body>
+</html>
