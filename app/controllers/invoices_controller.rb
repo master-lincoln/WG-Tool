@@ -74,6 +74,12 @@ class InvoicesController < ApplicationController
   # PUT /invoices/1
   # PUT /invoices/1.json
   def update
+    @invoice = Invoice.find(params[:id])
+    if current_user != @invoice.creator
+      redirect_to :root, :error => "Du darfst nur deine eigenen Rechnungen bearbeiten."
+      return
+    end
+
     user_ids = params[:invoice][:userids].split(',')
     params[:invoice].delete :userids
     @invoice = Invoice.find(params[:id])
