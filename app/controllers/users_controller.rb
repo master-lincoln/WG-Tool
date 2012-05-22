@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login, :only => [:feed]
 
   def search
     @users = User.where('lower(name) LIKE ?', "#{params[:q].downcase}%")
