@@ -1,4 +1,5 @@
 class UserMailer < ActionMailer::Base
+  add_template_helper(ApplicationHelper) 
   default from: "w9.t00l@googlemail.com"
 
   def invoice_created(user, invoice)
