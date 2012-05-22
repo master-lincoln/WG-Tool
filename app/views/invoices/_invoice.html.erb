@@ -1,4 +1,4 @@
-<div class="invoice">
+<div class="invoice row well">
 <% if current_user && current_user == invoice.creator %>
   <%= link_to 'x', invoice, confirm: 'Wirklich löschen?', method: :delete, :title => 'Eintrag löschen', :class => 'close' %>
   <%= link_to 'Bearbeiten', edit_invoice_path(invoice), :class => 'edit' %>
@@ -6,14 +6,14 @@
 
 <div style="display:table;" class="span5">
 	<div class="span1 center-cell">
-		<%= link_to invoice.creator.name, user_path(invoice.creator), :class => "btn success" %>
+		<%= link_to invoice.creator.name, user_path(invoice.creator), :class => "btn btn-success" %>
 	</div>
 	<div class="span1 center-cell">
 		<div style="height:50%; border-bottom: 5px solid #EEEEEE; margin: 0 5px;">
 		</div>
 	</div>
-	<div class="span2 center-cell">
-		<span class="label-price important text-center"><%= euro invoice.price %></span> 
+	<div class="span1 center-cell">
+		<span class="label-price label-important text-center"><%= euro invoice.price %></span> 
 	</div>
 	<div class="span1 center-cell">
 		<div style="height:50%; border-bottom: 5px solid #EEEEEE; margin-left: 5px;">
