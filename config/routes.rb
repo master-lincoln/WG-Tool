@@ -6,9 +6,7 @@ WGTool::Application.routes.draw do
   resources :invoices
   match "/auth/:provider/callback" => "sessions#create"
   post "/users/:id/mail" => "users#mail_info"
-  match '/users/:id/feed' => 'users#feed',
-      :as => :feed,
-      :defaults => { :format => 'atom' }
+  match '/users/:id/feed' => 'users#feed', :as => :feed
   match "/signout" => "sessions#destroy", :as => :signout
   match '/:action' => 'application##{:action}'
 
