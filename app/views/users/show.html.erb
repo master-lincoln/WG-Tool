@@ -2,7 +2,8 @@
 <h1>
 	<%= @user.name[0] %><small><%= @user.name[1..-1] %></small>
 	<%= link_to 'Neue Rechnung', new_invoice_path, :class => 'btn btn-primary', :style => 'float: right' %>
-	<%= link_to '', '#', :id => 'mail-btn', :class => 'btn icon-envelope', :style => 'float: right' %>
+	<%= link_to '', '#', :id => 'mail-btn', :class => 'btn icon-envelope', :style => 'float: right', :title => 'Notification Settings' %>
+	<%= link_to '', { :action => "feed" }, :class => 'btn icon-info-sign', :style => 'float: right', :title => 'ATOM Feed' %>
 </h1>
 <div id="mail-box">
 	<%= form_tag(:controller => "users", :action => "mail_info", :method => "post") do %>

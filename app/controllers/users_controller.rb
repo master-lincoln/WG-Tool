@@ -17,6 +17,18 @@ class UsersController < ApplicationController
     redirect_to @user, :notice => 'E-Mail Daten gespeichert.'
   end
 
+  def feed
+    @user = User.find(params[:id])
+    @title = "W9Tool"
+    @invoices = @user.mentioned_invoices
+    @updated = @invoices.first.updated_at
+    respond_to do |format|
+      format.atom { render :layout => false }
+      # we want the RSS feed to redirect permanently to the ATOM feed
+      format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+    end
+  end
+
   # GET /users
   # GET /users.json
   def index
