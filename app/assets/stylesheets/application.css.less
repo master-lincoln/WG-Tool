@@ -3,13 +3,13 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require twitter/bootstrap
+ *= require bootstrap_and_overrides
  *= require token-input
  *= require_tree . 
 */
 
-#nav-right {
-	float: right;
+.content {
+	padding-top: 30px;
 }
 
 #nav-right a.loginpic {
@@ -32,4 +32,8 @@ div.input textarea {
 .btn-icon-text {
   position: relative;
   top: -10px;
+}
+
+.text-center {
+	text-align: center;
 }

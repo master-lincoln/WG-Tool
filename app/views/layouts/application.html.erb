@@ -6,18 +6,18 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body style="padding-top: 60px">
-  <div class="topbar">
-    <div class="topbar-inner">
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
       <div class="container">
-        <h3><a href="/">WG-Tool<small>alpha</small></a></h3>
+        <a href="/" class="brand">W9Tool</a>
         <ul class="nav">
           <% if current_user %>
             <li><%= link_to "Rechnungen", invoices_path  %></li>
             <li><%= link_to "Einkaufsliste", articles_path %></li>
           <% end %>
         </ul>
-        <ul class="nav" id="nav-right">
+        <ul class="nav pull-right">
           <% if current_user %>
             <li><%= link_to "Logout", signout_path %></li>
           <% end %>

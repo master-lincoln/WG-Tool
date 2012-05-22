@@ -15,9 +15,14 @@ function roundTwo(value) {
 	return Math.round(100*value)/100
 }
 
-
-// draw standings chart
 $(function(){
+
+	// drop down mail settings box
+	$('#mail-box:first').toggle();
+	$('#mail-btn').click(function() {
+		$('#mail-box:first').slideToggle();
+	});
+	// draw standings chart
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: 'chart',
