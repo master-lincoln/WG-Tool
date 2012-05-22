@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:atom, {:action => "feed"}, {:title => "W9-Tool"}) %>
+<% end %>
 
 <h1>
 	<%= @user.name[0] %><small><%= @user.name[1..-1] %></small>
