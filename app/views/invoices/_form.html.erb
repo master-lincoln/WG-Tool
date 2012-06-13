@@ -23,7 +23,7 @@
     <%= f.label :userids, :class => "label" %><br />
     <div class="clearfix">
       <div class="input">
-        <%= text_field_tag('invoice[userids]') %>
+        <%= text_field_tag 'invoice[userids]' %>
       </div>
     </div>
 
@@ -32,3 +32,20 @@
     <%= link_to 'Cancel', invoices_path, :class => "btn" %>
   </div>
 
+  <% 
+    if @invoice.users.empty?
+      user_ids = ""
+    else
+      user_ids = @invoice.users.collect { |u| "{id:"+h(u.id.to_s)+", name:\""+h(u.name)+"\"}" } .join(",").html_safe
+    end
+  %>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#invoice_userids").tokenInput("/users/search", {
+      prePopulate: [
+        <%= user_ids %>
+      ], 
+      theme: "facebook"
+    }); 
+  });
+  </script>

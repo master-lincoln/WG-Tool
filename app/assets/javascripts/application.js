@@ -22,50 +22,52 @@ $(function(){
 	$('#mail-btn').click(function() {
 		$('#mail-box:first').slideToggle();
 	});
-	// draw standings chart
-	var chart = new Highcharts.Chart({
-		chart: {
-			renderTo: 'chart',
-			defaultSeriesType: 'column'
-		},
-		title: {
-			text: 'Schuldenverteilung'
-		},
-		xAxis: {
-			categories: ['Schulden',]
-		},
-		yAxis: {
-			 title: {
-				text: 'Guthaben in €'
-			 }
-		},
-		tooltip: {
-			formatter: function() {
-				return ''+
-					 this.series.name +': '+ roundTwo(this.y)+'€';
-			}
-		},
-		plotOptions: {
-			column: {
-				dataLabels: {
-				   enabled: true,
-					color: '#334477',
-				   style: {
-					  fontWeight: 'bold'
-				   },
-				   formatter: function() {
-					  return roundTwo(this.y) +' €';
-				   }
+	if ( $("#chart").length > 0 ) {
+		// draw standings chart
+		var chart = new Highcharts.Chart({
+			chart: {
+				renderTo: 'chart',
+				defaultSeriesType: 'column'
+			},
+			title: {
+				text: 'Schuldenverteilung'
+			},
+			xAxis: {
+				categories: ['Schulden',]
+			},
+			yAxis: {
+				 title: {
+					text: 'Guthaben in €'
+				 }
+			},
+			tooltip: {
+				formatter: function() {
+					return ''+
+						 this.series.name +': '+ roundTwo(this.y)+'€';
 				}
+			},
+			plotOptions: {
+				column: {
+					dataLabels: {
+					   enabled: true,
+						color: '#334477',
+					   style: {
+						  fontWeight: 'bold'
+					   },
+					   formatter: function() {
+						  return roundTwo(this.y) +' €';
+					   }
+					}
+				}
+			},    
+			credits: {
+				enabled: false
+			},
+			series: standings,
+			exporting : {
+				enabled: false
 			}
-		},    
-		credits: {
-			enabled: false
-		},
-		series: standings,
-		exporting : {
-			enabled: false
-		}
-	});
+		});
+	};
 });
 

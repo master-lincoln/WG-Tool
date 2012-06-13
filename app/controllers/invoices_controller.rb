@@ -52,16 +52,23 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
+        mail_errors = 0
         # create duties
         user_ids.each do |user_id|
           user = User.find(user_id)
           Duty.create!(:invoice => @invoice, :user => user)
           # send out mails
           if user.wants_mail && user.email != ''
-            UserMailer.invoice_created(user, @invoice).deliver
+            begin
+              UserMailer.invoice_created(user, @invoice).deliver
+            rescue Exception
+              mail_errors |= 1
+            end
           end
         end
-
+        if mail_errors
+          flash[:error] = "Error while sending mail notifications: contact admin"
+        end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render json: @invoice, status: :created, location: @invoice }
       else
@@ -80,9 +87,9 @@ class InvoicesController < ApplicationController
       return
     end
 
-    user_ids = params[:invoice][:userids].split(',')
+    user_ids = params[:invoice][:userids].split(',').collect { |id_str| id_str.to_i}
     params[:invoice].delete :userids
-    @invoice = Invoice.find(params[:id])
+    #@invoice = Invoice.find(params[:id])
 
     if user_ids.empty?
       render action: "edit", notice: 'No users given'
@@ -91,8 +98,12 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.update_attributes(params[:invoice])
+        # find duties to remove
+        to_remove = Duty.where(:invoice_id => @invoice.id).all.reject { |duty| user_ids.include? duty.user_id }
+        Duty.delete(to_remove.collect { |r| r.id })
+        # find or add remaining
         user_ids.each do |user_id|
-          Duty.find_or_create_by_invoice_id_and_user_id(@invoice,User.find(user_id))
+          duty = Duty.find_or_create_by_invoice_id_and_user_id(@invoice.id, user_id)
         end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
         format.json { head :ok }
