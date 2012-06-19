@@ -25,7 +25,7 @@
 </div>
 
 <% @users.each do |user| %>
-	<% label_class = user.standing > 0 ? 'label-success' : 'label-important' %>
+	<% label_class = user.standing == 0 ? 'label' : (user.standing > 0 ? 'label-success' : 'label-important') %>
 	<span style="padding: 20px;">
 		<%= user.name %>
 		<span class="label <%= label_class %>">
