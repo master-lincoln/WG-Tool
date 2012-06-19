@@ -69,7 +69,7 @@ class InvoicesController < ApplicationController
         if mail_errors != 0
           flash[:error] = "Error while sending mail notifications: contact admin"
         end
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
+        format.html { redirect_to @invoice, :flash => { success: 'Invoice was successfully created.' } }
         format.json { render json: @invoice, status: :created, location: @invoice }
       else
         format.html { render action: "new" }
@@ -105,7 +105,7 @@ class InvoicesController < ApplicationController
         user_ids.each do |user_id|
           duty = Duty.find_or_create_by_invoice_id_and_user_id(@invoice.id, user_id)
         end
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to @invoice, :flash => { success: 'Invoice was successfully updated.'} }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
