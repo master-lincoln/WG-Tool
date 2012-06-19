@@ -66,7 +66,7 @@ class InvoicesController < ApplicationController
             end
           end
         end
-        if mail_errors
+        if mail_errors != 0
           flash[:error] = "Error while sending mail notifications: contact admin"
         end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
