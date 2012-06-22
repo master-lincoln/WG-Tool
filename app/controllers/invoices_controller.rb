@@ -42,7 +42,7 @@ class InvoicesController < ApplicationController
   def create
     user_ids = params[:invoice][:userids].split(',')
     params[:invoice].delete :userids
-    params[:invoice][:price] = params[:invoice][:price].gsub!(/\,/, "." )
+    params[:invoice][:price] = params[:invoice][:price].gsub(/\,/, "." )
     @invoice = Invoice.new(params[:invoice])
 
     if user_ids.empty?
@@ -90,7 +90,7 @@ class InvoicesController < ApplicationController
 
     user_ids = params[:invoice][:userids].split(',').collect { |id_str| id_str.to_i}
     params[:invoice].delete :userids
-    params[:invoice][:price] = params[:invoice][:price].gsub!(/\,/, "." )
+    params[:invoice][:price] = params[:invoice][:price].gsub(/\,/, "." )
 
     if user_ids.empty?
       render action: "edit", notice: 'No users given'
