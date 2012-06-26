@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_filter :require_login
   skip_before_filter :require_login, :only => [:home, :about]
+  http_basic_authenticate_with :name => "wg", :password => ENV['HTTP_PASS'], :except => [:home, :feed]
 
   def home
     if current_user
