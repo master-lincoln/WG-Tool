@@ -46,7 +46,8 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(params[:invoice])
 
     if user_ids.empty?
-      render action: "new", notice: 'No users given'
+      flash[:error] = "Please enter asscociated users"
+      render action: "new"
       return
     end
     @invoice.creator = current_user

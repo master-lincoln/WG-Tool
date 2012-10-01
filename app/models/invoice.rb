@@ -3,6 +3,8 @@ class Invoice < ActiveRecord::Base
 	has_many :duties
 	has_many :users, :through => :duties
 
+	validates :comment, :price, :presence => true
+
 	def individual_sum
 		price / duties.count
 	end
