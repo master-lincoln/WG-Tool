@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Moin <%= @user.name %></h2>
+    <p>
+      <%= @invoice.creator.name %> hat eine Rechnung verändert, die dich betrifft:
+    </p>
+    <p>
+      <%= @invoice.previous_changes %>
+    </p>
+    <p>
+      Dein aktueller Kontostand liegt jetzt bei <b><%= euro @user.standing %></b> <br>
+      <%= link_to 'Online anschauen', user_url(@user, :host => 'wg-tool.herokuapp.com') %>
+    </p>
+  </body>
+</html>

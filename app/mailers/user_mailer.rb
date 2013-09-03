@@ -8,4 +8,10 @@ class UserMailer < ActionMailer::Base
 	mail :to => user.email, :subject => "Neue Rechnung von #{@invoice.creator.name}"
   end
 
+  def invoice_updated(user, invoice)
+  	@user = user
+  	@invoice = invoice
+	mail :to => user.email, :subject => "Rechnung veraendert von #{@invoice.creator.name}"
+  end
+
 end

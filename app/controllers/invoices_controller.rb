@@ -54,21 +54,13 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        mail_errors = 0
         # create duties
         user_ids.each do |user_id|
           user = User.find(user_id)
           Duty.create!(:invoice => @invoice, :user => user)
-          # send out mails
-          if user.wants_mail && user.email != ''
-            begin
-              UserMailer.invoice_created(user, @invoice).deliver
-            rescue Exception
-              mail_errors |= 1
-            end
-          end
         end
-        if mail_errors != 0
+        mail_errors = send_mails(:created)
+        if mail_errors
           flash[:error] = "Error while sending mail notifications: contact admin"
         end
         format.html { redirect_to @invoice, :flash => { success: 'Invoice was successfully created.' } }
@@ -107,6 +99,10 @@ class InvoicesController < ApplicationController
         user_ids.each do |user_id|
           duty = Duty.find_or_create_by_invoice_id_and_user_id(@invoice.id, user_id)
         end
+        mail_errors = send_mails(:updated)
+        if mail_errors
+          flash[:error] = "Error while sending mail notifications: contact admin"
+        end
         format.html { redirect_to @invoice, :flash => { success: 'Invoice was successfully updated.'} }
         format.json { head :ok }
       else
@@ -127,4 +123,27 @@ class InvoicesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+
+  private
+  def send_mails(type)
+    errors = false
+    @invoice.users.each do |user|
+      if user.wants_mail && user.email != ''
+        begin
+          case type
+          when :created
+            UserMailer.invoice_created(user, @invoice).deliver
+          when :updated
+            UserMailer.invoice_updated(user, @invoice).deliver
+        end
+        rescue Exception
+          puts $!, $@
+          errors |= true
+        end
+      end
+    end
+    return errors
+  end
+
 end
