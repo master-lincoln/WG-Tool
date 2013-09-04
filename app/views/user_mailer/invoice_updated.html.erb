@@ -9,7 +9,7 @@
       <%= @invoice.creator.name %> hat eine Rechnung verändert, die dich betrifft:
     </p>
     <pre>
-      <%= JSON.pretty_generate(@invoice.previous_changes) %>
+      <%= format_diff_as_table(@invoice.previous_changes) %>
     </pre>
     <p>
       Dein aktueller Kontostand liegt jetzt bei <b><%= euro @user.standing %></b> <br>
