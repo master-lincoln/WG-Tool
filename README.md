@@ -4,7 +4,8 @@ WG-Tool
 A web app to keep your shared expenses balanced in a flat share.
 
 When buying stuff for the community, just enter the items and the total sum.
-Then select every involved person and see the debt chart update. 
+Then select every involved person and see the debt chart update.
+Everyone involved can see the new invoice in a personal ATOM feed or get notified by mail.
 
 ![Screenshot](doc/screen.png)
 
