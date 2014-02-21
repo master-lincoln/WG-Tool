@@ -43,5 +43,6 @@ Install dependencies
 ``cd WG-Tool && bundle install``
 
 Now you can run the server with:
-``rails s``
+``HHTP_PASS=test rails s``
 
+For the HTTP Basic login use user ``wg`` and pass ``test`` as in the command above.
