@@ -1,0 +1,20 @@
+
+  <h3><small>User</small> Statistics</h3>
+
+  <dl>
+    <dt>Number of users</dt>
+    <dd><%= @numUsers %></dd>
+
+    <dt>Number of invoices</dt>
+    <dd><%= @numInvoices %></dd>
+
+    <dt>Number of invoices by user:</dt>
+    <dd>
+      <dl>
+      <% @users.each do |user| %>
+        <dt><%= user[:name] %></dt>
+        <dd><%= user[:invoice_count] %></dd>
+      <%end%>
+      </dl>
+    </dd>
+  </dl>

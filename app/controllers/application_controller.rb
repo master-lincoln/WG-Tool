@@ -16,6 +16,17 @@ class ApplicationController < ActionController::Base
   def about
   end
 
+  def stats
+    @numUsers = User.all.count
+    @numInvoices = Invoice.all.count
+    @users = User.all.map do |u|
+      {
+        :name => u.name, 
+        :invoice_count => Invoice.where(:creator_id => u.id).count
+      }
+    end
+  end
+
   private
 
   def require_login

@@ -15,6 +15,7 @@
         <ul class="nav">
           <% if current_user %>
             <li><%= link_to "Rechnungen", invoices_path  %></li>
+            <li><%= link_to "Statistiken", :controller => "application", :action => "stats" %></li>
             <li><%= link_to "Einkaufsliste", articles_path %></li>
           <% end %>
         </ul>
