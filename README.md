@@ -1,6 +1,13 @@
 WG-Tool
 =======
 
+A web app to keep your shared expenses balanced in a flat share.
+
+When buying stuff for the community, just enter the items and the total sum.
+Then select every involved person and see the debt chart update. 
+
+![Screenshot](doc/screen.png)
+
 The current version should always be uploaded at [wg-tool.herokuapp.com](http://wg-tool.herokuapp.com/) 
 
 
