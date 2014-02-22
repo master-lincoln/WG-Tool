@@ -23,6 +23,17 @@
 
 <script type="text/javascript">
 var standings = [
+  {
+    name: 'expenses',
+    type: 'area',
+    yAxis: 1,
+    data: <%=raw @expenses %>,
+    color: '#EEE',
+    enableMouseTracking: false,
+    tooltip: {
+        valueSuffix: ' €'
+    }
+  },
 <% @users.each do |user| %>
   {
     name : '<%= user[:name] %>',
@@ -48,11 +59,17 @@ var chart = new Highcharts.Chart({
           rotation: -75,
         }
       },
-      yAxis: {
-         title: {
-          text: 'Anzahl Rechnungen'
-         }
-      },
+      yAxis: [
+      {
+        title: {
+        text: 'Anzahl Rechnungen'
+        }
+      }, {
+        title: {
+        text: 'Ausgaben in €'
+        },
+        opposite: true
+      }],
       tooltip: {
         formatter: function() {
           return ''+
@@ -61,6 +78,13 @@ var chart = new Highcharts.Chart({
       },
       credits: {
         enabled: false
+      },
+      plotOptions: {
+        area: {
+          marker: {
+            enabled: false,
+          }
+        }
       },
       series: standings,
       exporting : {

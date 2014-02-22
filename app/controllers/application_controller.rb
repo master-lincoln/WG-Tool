@@ -28,9 +28,15 @@ class ApplicationController < ActionController::Base
         :history => get_history_for(u.id)
       }
     end
+    @expenses = get_expenses
   end
 
   private
+
+  def get_expenses
+    results = Invoice.group("DATE_TRUNC('month', created_at)").sum(:price)
+    results.map { |k,v| [Date.parse(k).to_time.to_i*1000, v.to_i] }
+  end
 
   def get_history_for(user_id)
     results = Invoice.where(:creator_id => user_id).group("DATE_TRUNC('month', created_at)").count
