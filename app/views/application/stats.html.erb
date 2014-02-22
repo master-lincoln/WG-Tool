@@ -33,6 +33,7 @@ var standings = [
 
 var chart = new Highcharts.Chart({
       chart: {
+        zoomType: 'x',
         renderTo: 'invoice_plot',
         type: 'line'
       },
@@ -42,6 +43,10 @@ var chart = new Highcharts.Chart({
       xAxis: {
         type: 'datetime',
         tickInterval: 30 * 24 * 36e5, // one month
+        maxZoom: 3* 30 * 24 * 36e5, // 3 months
+        labels: {
+          rotation: -75,
+        }
       },
       yAxis: {
          title: {
@@ -52,16 +57,6 @@ var chart = new Highcharts.Chart({
         formatter: function() {
           return ''+
              this.series.name +': '+ Highcharts.dateFormat('%b %y', this.x)+' - <b>'+roundTwo(this.y)+'</b>';
-        }
-      },
-      plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: true,
-                style: {
-                    textShadow: '0 0 3px white, 0 0 3px white'
-                }
-            }
         }
       },
       credits: {
