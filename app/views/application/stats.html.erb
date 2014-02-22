@@ -13,7 +13,7 @@
     <dl>
     <% @users.each do |user| %>
       <dt><%= user[:name] %></dt>
-      <dd><%= user[:invoice_count] %></dd>
+      <dd><%= user[:invoice_count] %> invoices, making <%= euro user[:invoice_sum] %></dd>
     <%end%>
     </dl>
   </dd>
@@ -56,7 +56,7 @@ var chart = new Highcharts.Chart({
       tooltip: {
         formatter: function() {
           return ''+
-             this.series.name +': '+ Highcharts.dateFormat('%b %y', this.x)+' - <b>'+roundTwo(this.y)+'</b>';
+             this.series.name +': '+ Highcharts.dateFormat('%b %y', this.x)+' - <b>'+this.y+' -> '+roundTwo(this.point.config[2])+'€</b>';
         }
       },
       credits: {

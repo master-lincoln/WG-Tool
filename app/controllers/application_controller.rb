@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
       {
         :name => u.name, 
         :invoice_count => their_invoices.count,
+        :invoice_sum => their_invoices.sum(:price),
         :history => get_history_for(u.id)
       }
     end
@@ -33,7 +34,8 @@ class ApplicationController < ActionController::Base
 
   def get_history_for(user_id)
     results = Invoice.where(:creator_id => user_id).group("DATE_TRUNC('month', created_at)").count
-    results.map { |k,v| [Date.parse(k).to_time.to_i*1000, v] }
+    sums = Invoice.where(:creator_id => user_id).group("DATE_TRUNC('month', created_at)").sum(:price)
+    results.map { |k,v| [Date.parse(k).to_time.to_i*1000, v, sums[k].to_s] }
   end
 
   def require_login
