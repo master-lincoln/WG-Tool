@@ -20,14 +20,21 @@ class ApplicationController < ActionController::Base
     @numUsers = User.all.count
     @numInvoices = Invoice.all.count
     @users = User.all.map do |u|
+      their_invoices = Invoice.where(:creator_id => u.id)
       {
         :name => u.name, 
-        :invoice_count => Invoice.where(:creator_id => u.id).count
+        :invoice_count => their_invoices.count,
+        :history => get_history_for(u.id)
       }
     end
   end
 
   private
+
+  def get_history_for(user_id)
+    results = Invoice.where(:creator_id => user_id).group("DATE_TRUNC('month', created_at)").count
+    results.map { |k,v| [Date.parse(k).to_time.to_i, v] }
+  end
 
   def require_login
     fake_login if Rails.env.development?

@@ -1,20 +1,75 @@
 
-  <h3><small>User</small> Statistics</h3>
+<h3><small>User</small> Statistics</h3>
 
-  <dl>
-    <dt>Number of users</dt>
-    <dd><%= @numUsers %></dd>
+<dl>
+  <dt>Number of users</dt>
+  <dd><%= @numUsers %></dd>
 
-    <dt>Number of invoices</dt>
-    <dd><%= @numInvoices %></dd>
+  <dt>Number of invoices</dt>
+  <dd><%= @numInvoices %></dd>
 
-    <dt>Number of invoices by user:</dt>
-    <dd>
-      <dl>
-      <% @users.each do |user| %>
-        <dt><%= user[:name] %></dt>
-        <dd><%= user[:invoice_count] %></dd>
-      <%end%>
-      </dl>
-    </dd>
-  </dl>
+  <dt>Number of invoices by user:</dt>
+  <dd>
+    <dl>
+    <% @users.each do |user| %>
+      <dt><%= user[:name] %></dt>
+      <dd><%= user[:invoice_count] %></dd>
+    <%end%>
+    </dl>
+  </dd>
+</dl>
+
+<div id="invoice_plot" style="width: 800px; height: 300px; margin: 3px auto"></div>
+
+<script type="text/javascript">
+var standings = [
+<% @users.each do |user| %>
+  {
+    name : '<%= user[:name] %>',
+    data: <%=raw user[:history] %>
+  }<%= ',' unless user==@users.last %>
+<% end %>
+];
+
+var chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'invoice_plot',
+        type: 'line'
+      },
+      title: {
+        text: 'Rechnungen'
+      },
+      xAxis: {
+        type: 'datetime',
+        tickInterval: 30 * 24 * 36e5, // one month
+      },
+      yAxis: {
+         title: {
+          text: 'Anzahl Rechnungen'
+         }
+      },
+      tooltip: {
+        formatter: function() {
+          return ''+
+             this.series.name +': '+ Highcharts.dateFormat('%b %y', this.x)+' - <b>'+roundTwo(this.y)+'</b>';
+        }
+      },
+      plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true,
+                style: {
+                    textShadow: '0 0 3px white, 0 0 3px white'
+                }
+            }
+        }
+      },
+      credits: {
+        enabled: false
+      },
+      series: standings,
+      exporting : {
+        enabled: false
+      }
+    });
+</script>
